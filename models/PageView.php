@@ -1,7 +1,5 @@
-<?php namespace IgniterLab\OnlineTracker\Models;
+<?php namespace Igniter\OnlineTracker\Models;
 
-use Auth;
-use Country;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use Jenssegers\Agent\Agent;
@@ -19,10 +17,10 @@ class PageView extends Model
 
     const UPDATED_AT = 'updated_at';
 
-   /**
+    /**
      * @var string The database table name
      */
-    protected $table = 'igniterlab_onlinetracker_tracker';
+    protected $table = 'igniter_onlinetracker_tracker';
 
     /**
      * @var string The database table primary key
@@ -35,7 +33,7 @@ class PageView extends Model
 
     public $relation = [
         'belongsTo' => [
-            'geoip'    => ['IgniterLab\OnlineTracker\Models\GeoIp'],
+            'geoip' => ['Igniter\OnlineTracker\Models\GeoIp'],
             'customer' => ['Admin\Models\Customers_model', 'foreignKey' => 'customer_id'],
         ],
     ];

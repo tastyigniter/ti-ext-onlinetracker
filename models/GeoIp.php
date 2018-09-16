@@ -1,6 +1,6 @@
 <?php
 
-namespace IgniterLab\OnlineTracker\Models;
+namespace Igniter\OnlineTracker\Models;
 
 use Model;
 
@@ -13,14 +13,14 @@ class GeoIp extends Model
     /**
      * @var string The database table name
      */
-    protected $table = 'igniterlab_onlinetracker_geoip';
+    protected $table = 'igniter_onlinetracker_geoip';
 
     /**
      * @var string The database table primary key
      */
     protected $primaryKey = 'id';
 
-    public $timestamps = true;
+    public $timestamps = TRUE;
 
     protected $guarded = [];
 

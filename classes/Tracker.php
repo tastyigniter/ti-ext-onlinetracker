@@ -1,10 +1,10 @@
 <?php
 
-namespace IgniterLab\OnlineTracker\Classes;
+namespace Igniter\OnlineTracker\Classes;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
-use IgniterLab\OnlineTracker\Models\Settings;
+use Igniter\OnlineTracker\Models\Settings;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
@@ -88,7 +88,7 @@ class Tracker
 
     protected function robotIsTrackable()
     {
-        $trackRobots = $this->config->get('track_robots', false);
+        $trackRobots = $this->config->get('track_robots', FALSE);
 
         return !$this->agent->isRobot()
             OR !$trackRobots;
@@ -120,16 +120,16 @@ class Tracker
     protected function getLogData()
     {
         return [
-            'session_id'   => $this->session->getId(),
-            'ip_address'   => $this->request->getClientIp(),
-            'access_type'  => $this->request->method(),
-            'geoip_id'     => $this->getGeoIpId(),
-            'request_uri'  => $this->request->path(),
-            'query'        => $this->request->getQueryString(),
-            'referrer_uri'  => $this->getReferer(),
-            'user_agent'   => $this->request->userAgent(),
-            'headers'      => $this->request->headers->all(),
-            'browser'      => $this->agent->browser(),
+            'session_id' => $this->session->getId(),
+            'ip_address' => $this->request->getClientIp(),
+            'access_type' => $this->request->method(),
+            'geoip_id' => $this->getGeoIpId(),
+            'request_uri' => $this->request->path(),
+            'query' => $this->request->getQueryString(),
+            'referrer_uri' => $this->getReferer(),
+            'user_agent' => $this->request->userAgent(),
+            'headers' => $this->request->headers->all(),
+            'browser' => $this->agent->browser(),
         ];
     }
 
@@ -162,8 +162,10 @@ class Tracker
             );
 
             return $geoIpId;
-        } catch (AddressNotFoundException $e) {
-        } catch (InvalidDatabaseException $e) {
+        }
+        catch (AddressNotFoundException $e) {
+        }
+        catch (InvalidDatabaseException $e) {
         }
     }
 
@@ -238,11 +240,11 @@ class Tracker
     protected function getGeoIpData($record)
     {
         return [
-            'latitude'           => $record->location->latitude,
-            'longitude'          => $record->location->longitude,
-            'region'             => $record->mostSpecificSubdivision->isoCode,
-            'city'               => $record->city->name,
-            'postal_code'        => $record->postal->code,
+            'latitude' => $record->location->latitude,
+            'longitude' => $record->location->longitude,
+            'region' => $record->mostSpecificSubdivision->isoCode,
+            'city' => $record->city->name,
+            'postal_code' => $record->postal->code,
             'country_iso_code_2' => $record->country->isoCode,
         ];
     }

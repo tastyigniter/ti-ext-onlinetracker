@@ -1,4 +1,4 @@
-<?php namespace IgniterLab\OnlineTracker\Models;
+<?php namespace Igniter\OnlineTracker\Models;
 
 use Auth;
 use Carbon\Carbon;
@@ -23,7 +23,7 @@ class PageVisit extends Model
     /**
      * @var string The database table name
      */
-    protected $table = 'igniterlab_onlinetracker_tracker';
+    protected $table = 'igniter_onlinetracker_tracker';
 
     /**
      * @var string The database table primary key
@@ -36,7 +36,7 @@ class PageVisit extends Model
 
     public $relation = [
         'belongsTo' => [
-            'geoip'    => ['IgniterLab\OnlineTracker\Models\GeoIp'],
+            'geoip' => ['Igniter\OnlineTracker\Models\GeoIp'],
             'customer' => ['Admin\Models\Customers_model', 'foreignKey' => 'customer_id'],
         ],
     ];
@@ -59,8 +59,10 @@ class PageVisit extends Model
             $reader = new Reader((new Settings)->getDatabasePath());
             $record = $reader->city($ip);
             $online->country_code = $record->country->isoCode;
-        } catch (AddressNotFoundException $e) {
-        } catch (InvalidDatabaseException $e) {
+        }
+        catch (AddressNotFoundException $e) {
+        }
+        catch (InvalidDatabaseException $e) {
         }
 
         if (Auth::check())
@@ -112,13 +114,13 @@ class PageVisit extends Model
 
     public function getCountryCityAttribute()
     {
-        return $this->country_name.' - '. ($this->geoip ? $this->geoip->city : null);
+        return $this->country_name.' - '.($this->geoip ? $this->geoip->city : null);
     }
 
     public function getCustomerNameAttribute()
     {
         if (!$this->customer)
-            return lang('igniterlab.onlinetracker::default.text_guest');
+            return lang('igniter.onlinetracker::default.text_guest');
 
         return $this->customer->full_name;
     }
@@ -128,22 +130,22 @@ class PageVisit extends Model
         $platform = $this->agentClass->platform();
 
         if ($this->agentClass->isRobot()) {
-            return lang('igniterlab.onlinetracker::default.text_robot')
+            return lang('igniter.onlinetracker::default.text_robot')
                 .' ['.$platform.']';
         }
 
         if ($this->agentClass->isTablet()) {
-            return lang('igniterlab.onlinetracker::default.text_tablet')
+            return lang('igniter.onlinetracker::default.text_tablet')
                 .' ['.$platform.'] ['.$this->agentClass->device().']';
         }
 
         if ($this->agentClass->isMobile()) {
-            return lang('igniterlab.onlinetracker::default.text_tablet')
+            return lang('igniter.onlinetracker::default.text_tablet')
                 .' ['.$platform.'] ['.$this->agentClass->device().']';
         }
 
         if ($this->agentClass->isDesktop()) {
-            return lang('igniterlab.onlinetracker::default.text_computer')
+            return lang('igniter.onlinetracker::default.text_computer')
                 .' ['.$platform.']';
         }
     }

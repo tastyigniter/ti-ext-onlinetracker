@@ -4,18 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
 /**
- * Create igniterlab_onlinetracker_tracker table
+ * Create igniter_onlinetracker_tracker table
  */
 class CreateOnlineTrackerTable extends Migration
 {
     public function up()
     {
-        if (Schema::hasTable('igniterlab_onlinetracker_tracker'))
+        if (Schema::hasTable('igniter_onlinetracker_tracker'))
             return;
 
-        Schema::rename('customers_online', 'igniterlab_onlinetracker_tracker');
+        Schema::rename('customers_online', 'igniter_onlinetracker_tracker');
 
-        Schema::table('igniterlab_onlinetracker_tracker', function (Blueprint $table) {
+        Schema::table('igniter_onlinetracker_tracker', function (Blueprint $table) {
             $table->bigIncrements('activity_id')->change();
             $table->string('session_id')->nullable();
             $table->integer('geoip_id')->nullable();
@@ -26,7 +26,7 @@ class CreateOnlineTrackerTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('igniterlab_onlinetracker_geoip', function (Blueprint $table) {
+        Schema::create('igniter_onlinetracker_geoip', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->double('latitude')->nullable()->index();
@@ -41,7 +41,7 @@ class CreateOnlineTrackerTable extends Migration
 
     public function down()
     {
-        Schema::table('igniterlab_onlinetracker_tracker', function (Blueprint $table) {
+        Schema::table('igniter_onlinetracker_tracker', function (Blueprint $table) {
             $table->dropColumn('session_id');
             $table->dropColumn('geoip_id');
             $table->dropColumn('headers');
@@ -50,8 +50,8 @@ class CreateOnlineTrackerTable extends Migration
             $table->string('access_type')->change();
         });
 
-        Schema::rename('igniterlab_onlinetracker_tracker', 'customers_online');
+        Schema::rename('igniter_onlinetracker_tracker', 'customers_online');
 
-        Schema::dropIfExists('igniterlab_onlinetracker_geoip');
+        Schema::dropIfExists('igniter_onlinetracker_geoip');
     }
 }

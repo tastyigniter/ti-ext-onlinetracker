@@ -1,9 +1,9 @@
 <?php
 
-namespace IgniterLab\OnlineTracker\Classes;
+namespace Igniter\OnlineTracker\Classes;
 
-use IgniterLab\OnlineTracker\Models\PageVisit as TrackerModel;
-use IgniterLab\OnlineTracker\Models\GeoIp;
+use Igniter\OnlineTracker\Models\GeoIp;
+use Igniter\OnlineTracker\Models\PageVisit as TrackerModel;
 
 class RepositoryManager
 {

@@ -1,4 +1,4 @@
-<?php namespace IgniterLab\OnlineTracker\Middleware;
+<?php namespace Igniter\OnlineTracker\Middleware;
 
 use Closure;
 

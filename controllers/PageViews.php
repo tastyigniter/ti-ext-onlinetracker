@@ -1,7 +1,6 @@
-<?php namespace IgniterLab\OnlineTracker\Controllers;
+<?php namespace Igniter\OnlineTracker\Controllers;
 
 use AdminMenu;
-use IgniterLab\OnlineTracker\Models\Settings;
 
 class PageViews extends \Admin\Classes\AdminController
 {
@@ -11,16 +10,16 @@ class PageViews extends \Admin\Classes\AdminController
 
     public $listConfig = [
         'list' => [
-            'model'        => 'IgniterLab\OnlineTracker\Models\PageView',
-            'title'        => 'lang:igniterlab.onlinetracker::default.views.text_title',
-            'emptyMessage' => 'lang:igniterlab.onlinetracker::default.views.text_empty',
-            'defaultSort'  => ['updated_at', 'DESC'],
-            'showCheckboxes' => false,
-            'configFile'   => 'pageview'
+            'model' => 'Igniter\OnlineTracker\Models\PageView',
+            'title' => 'lang:igniter.onlinetracker::default.views.text_title',
+            'emptyMessage' => 'lang:igniter.onlinetracker::default.views.text_empty',
+            'defaultSort' => ['updated_at', 'DESC'],
+            'showCheckboxes' => FALSE,
+            'configFile' => 'pageview'
         ],
     ];
 
-    protected $requiredPermissions = 'Igniterlab.Onlinetracker.Views';
+    protected $requiredPermissions = 'igniter.onlinetracker.Views';
 
     public function __construct()
     {

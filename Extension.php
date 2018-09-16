@@ -1,12 +1,12 @@
-<?php namespace IgniterLab\OnlineTracker;
+<?php namespace Igniter\OnlineTracker;
 
 use GeoIp2\Database\Reader;
-use IgniterLab\OnlineTracker\Classes\RepositoryManager;
-use IgniterLab\OnlineTracker\Classes\Tracker;
-use IgniterLab\OnlineTracker\Middleware\LogOnlineUser;
-use IgniterLab\OnlineTracker\Models\GeoIp;
-use IgniterLab\OnlineTracker\Models\PageVisit;
-use IgniterLab\OnlineTracker\Models\Settings;
+use Igniter\OnlineTracker\Classes\RepositoryManager;
+use Igniter\OnlineTracker\Classes\Tracker;
+use Igniter\OnlineTracker\Middleware\LogOnlineUser;
+use Igniter\OnlineTracker\Models\GeoIp;
+use Igniter\OnlineTracker\Models\PageVisit;
+use Igniter\OnlineTracker\Models\Settings;
 use Jenssegers\Agent\AgentServiceProvider;
 use System\Classes\BaseExtension;
 
@@ -15,22 +15,6 @@ use System\Classes\BaseExtension;
  */
 class Extension extends BaseExtension
 {
-    /**
-     * Returns information about this extension.
-     *
-     * @return array
-     */
-    public function extensionMeta()
-    {
-        return [
-            'name'        => 'OnlineTracker',
-            'author'      => 'IgniterLab',
-            'description' => 'No description provided yet...',
-            'icon'        => 'fa-plug',
-            'version'     => '1.0.0',
-        ];
-    }
-
     /**
      * Register method, called when the extension is first registered.
      *
@@ -78,19 +62,6 @@ class Extension extends BaseExtension
     }
 
     /**
-     * Registers any front-end components implemented in this extension.
-     *
-     * @return array
-     */
-    public function registerComponents()
-    {
-        return [
-// Remove this line and uncomment the line below to activate
-//            'IgniterLab\OnlineTracker\Components\MyComponent' => 'myComponent',
-        ];
-    }
-
-    /**
      * Registers any admin permissions used by this extension.
      *
      * @return array
@@ -98,9 +69,9 @@ class Extension extends BaseExtension
     public function registerPermissions()
     {
         return [
-            'Igniterlab.Onlinetracker.PageVisits' => [
+            'igniter.onlinetracker.PageVisits' => [
                 'description' => 'Some permission',
-                'action'      => ['access', 'add', 'manage', 'delete'],
+                'action' => ['access', 'add', 'manage', 'delete'],
             ],
         ];
     }
@@ -109,12 +80,12 @@ class Extension extends BaseExtension
     {
         return [
             'customers_online' => [
-                'priority'   => 50,
-                'class'      => 'customersonline',
-                'icon'       => 'fa-globe',
-                'href'       => admin_url('igniterlab/onlinetracker/pagevisits'),
-                'title'      => lang('igniterlab.onlinetracker::default.text_title'),
-                'permission' => 'IgniterLab.OnlineTracker.PageVisits',
+                'priority' => 50,
+                'class' => 'customersonline',
+                'icon' => 'fa-globe',
+                'href' => admin_url('igniter/onlinetracker/pagevisits'),
+                'title' => lang('igniter.onlinetracker::default.text_title'),
+                'permission' => 'igniter.onlinetracker.PageVisits',
             ],
         ];
     }
@@ -123,10 +94,10 @@ class Extension extends BaseExtension
     {
         return [
             'settings' => [
-                'label'       => 'Page Tracker Settings',
+                'label' => 'Page Tracker Settings',
                 'description' => 'Manage online tracker settings.',
-                'model'       => 'IgniterLab\OnlineTracker\Models\Settings',
-                'permissions' => ['Igniterlab.Onlinetracker'],
+                'model' => 'Igniter\OnlineTracker\Models\Settings',
+                'permissions' => ['igniter.onlinetracker'],
             ],
         ];
     }

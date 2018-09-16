@@ -1,9 +1,8 @@
 <?php
 
-namespace IgniterLab\OnlineTracker\Models;
+namespace Igniter\OnlineTracker\Models;
 
 use Exception;
-use Illuminate\Routing\Router;
 use Main\Classes\ThemeManager;
 use Model;
 use Route;
@@ -50,7 +49,7 @@ class Settings extends Model
         // Get header response
         $headers = get_headers($url);
         if (substr($headers[0], 9, 3) != '200') {
-            throw new Exception('Unable to download database. ('. substr($headers[0], 13) .')');
+            throw new Exception('Unable to download database. ('.substr($headers[0], 13).')');
         }
 
         // Download zipped database to a system temp file
@@ -63,7 +62,7 @@ class Settings extends Model
         // Remove temp file
         @unlink($tmpFile);
 
-        return true;
+        return TRUE;
     }
 
     public function getUpdateUrl()
