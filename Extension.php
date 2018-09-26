@@ -52,16 +52,6 @@ class Extension extends BaseExtension
     }
 
     /**
-     * Initialize method, called right before the request route.
-     *
-     * @return void
-     */
-    public function initialize()
-    {
-//        dump('initialize');
-    }
-
-    /**
      * Registers any admin permissions used by this extension.
      *
      * @return array

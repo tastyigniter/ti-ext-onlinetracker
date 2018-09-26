@@ -11,7 +11,8 @@ class CreateOnlineTrackerTable extends Migration
 {
     public function up()
     {
-        if (Schema::hasTable('igniter_onlinetracker_tracker'))
+        if (Schema::hasTable('igniter_onlinetracker_tracker')
+            OR !Schema::hasTable('customers_online'))
             return;
 
         Schema::rename('customers_online', 'igniter_onlinetracker_tracker');

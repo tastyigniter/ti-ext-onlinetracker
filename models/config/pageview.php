@@ -29,7 +29,7 @@ return [
                     'class' => 'btn btn-default',
                     'href' => 'extensions/edit/igniter/onlinetracker/settings',
                 ],
-                'filter' => ['label' => 'lang:admin::default.button_icon_filter', 'class' => 'btn btn-default btn-filter', 'data-toggle' => 'list-filter', 'data-target' => '.panel-filter .panel-body'],
+                'filter' => ['label' => 'lang:admin::lang.button_icon_filter', 'class' => 'btn btn-default btn-filter', 'data-toggle' => 'list-filter', 'data-target' => '.panel-filter .panel-body'],
             ],
         ],
         'columns' => [

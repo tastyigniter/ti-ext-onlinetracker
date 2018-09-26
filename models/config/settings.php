@@ -5,17 +5,17 @@ return [
         'toolbar' => [
             'buttons' => [
                 'save' => [
-                    'label' => 'lang:admin::default.button_save',
+                    'label' => 'lang:admin::lang.button_save',
                     'class' => 'btn btn-primary',
                     'data-request' => 'onSave',
                 ],
                 'saveClose' => [
-                    'label' => 'lang:admin::default.button_save_close',
+                    'label' => 'lang:admin::lang.button_save_close',
                     'class' => 'btn btn-default',
                     'data-request' => 'onSave',
                     'data-request-data' => 'close:1',
                 ],
-                'back' => ['label' => 'lang:admin::default.button_icon_back', 'class' => 'btn btn-default', 'href' => 'igniter/onlinetracker/pagevisits'],
+                'back' => ['label' => 'lang:admin::lang.button_icon_back', 'class' => 'btn btn-default', 'href' => 'igniter/onlinetracker/pagevisits'],
             ],
         ],
         'fields' => [

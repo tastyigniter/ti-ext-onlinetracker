@@ -1,9 +1,9 @@
 {
   "code": "igniter.onlinetracker",
   "name": "Online Tracker",
-  "description": "Track storefront page visits",
-  "version": "1.0.0",
+  "description": "Track storefront page views and visits",
+  "version": "0.1.0-beta.2",
   "author": "SamPoyigi",
-  "icon": "fa-plug",
-  "homepage": "https://github.com/sampoyigi/ti-ext-onlinetracker"
+  "icon": "fa-eye",
+  "homepage": "https://github.com/tastyigniter/ti-ext-onlinetracker"
 }
