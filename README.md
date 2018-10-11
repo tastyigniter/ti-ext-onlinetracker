@@ -14,12 +14,12 @@ Tracker gathers a lot of information from your requests to identify and store:
 - Routes and all its parameters
 - Referers (url)
 
-#### Admin Panel
+### Admin Panel
 
 In the admin user interface you can exclude page, routes from being tracked and set how long to keep logs. 
 
 
-#### Usage
+## Usage
 
-#### License
+### License
 [The MIT License (MIT)](https://tastyigniter.com/licence/)

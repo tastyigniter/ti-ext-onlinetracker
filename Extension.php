@@ -60,7 +60,7 @@ class Extension extends BaseExtension
     {
         return [
             'igniter.onlinetracker.PageVisits' => [
-                'description' => 'Some permission',
+                'description' => 'Manage online tracker settings',
                 'action' => ['access', 'add', 'manage', 'delete'],
             ],
         ];

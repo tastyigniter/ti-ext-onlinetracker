@@ -1,12 +1,8 @@
 <?php namespace Igniter\OnlineTracker\Models;
 
-use Auth;
 use Carbon\Carbon;
 use Country;
-use GeoIp2\Database\Reader;
-use GeoIp2\Exception\AddressNotFoundException;
 use Jenssegers\Agent\Agent;
-use MaxMind\Db\Reader\InvalidDatabaseException;
 use Model;
 
 /**
@@ -49,41 +45,6 @@ class PageVisit extends Model
      * @var Agent
      */
     protected $agentClass;
-
-    public static function track($request)
-    {
-        $online = new static;
-        $online->ip_address = $ip = $request->ip();
-
-        try {
-            $reader = new Reader((new Settings)->getDatabasePath());
-            $record = $reader->city($ip);
-            $online->country_code = $record->country->isoCode;
-        }
-        catch (AddressNotFoundException $e) {
-        }
-        catch (InvalidDatabaseException $e) {
-        }
-
-        if (Auth::check())
-            $online->customer_id = Auth::getId();
-
-        $agent = new Agent;
-        $agent->setUserAgent($userAgent = $request->userAgent());
-        $agent->setHttpHeaders($headers = $request->header());
-
-        $online->access_type = $online->getAccessTypeFromAgent($agent);
-        $online->browser = $agent->browser();
-
-        dd($online);
-        $referer = $request->header('referer', $request->header('utm_source', ''));
-        $online->request_uri = $request->path();
-        $online->referrer_uri = $referer ?? url()->previous();
-        $online->user_agent = $userAgent;
-//        $online->headers = $headers;
-
-        $online->save();
-    }
 
     public function afterFetch()
     {

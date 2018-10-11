@@ -11,10 +11,6 @@ class CreateOnlineTrackerTable extends Migration
 {
     public function up()
     {
-        if (Schema::hasTable('igniter_onlinetracker_tracker')
-            OR !Schema::hasTable('customers_online'))
-            return;
-
         $this->createTrackerTable();
 
         $this->createGeoIpTable();
@@ -38,14 +34,14 @@ class CreateOnlineTrackerTable extends Migration
 
     protected function createTrackerTable()
     {
-        if (Schema::hasTable('customers_online'))
-            Schema::rename('customers_online', 'igniter_onlinetracker_tracker');
-
         if (Schema::hasTable('igniterlab_onlinetracker_tracker'))
             Schema::rename('igniterlab_onlinetracker_tracker', 'igniter_onlinetracker_tracker');
 
         if (Schema::hasTable('igniter_onlinetracker_tracker'))
             return;
+
+        if (Schema::hasTable('customers_online'))
+            Schema::rename('customers_online', 'igniter_onlinetracker_tracker');
 
         Schema::table('igniter_onlinetracker_tracker', function (Blueprint $table) {
             $table->bigIncrements('activity_id')->change();
