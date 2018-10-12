@@ -22,9 +22,6 @@ class CreateOnlineTrackerTable extends Migration
             $table->dropColumn('session_id');
             $table->dropColumn('geoip_id');
             $table->dropColumn('headers');
-
-            $table->renameColumn('agent', 'access_type');
-            $table->string('access_type')->change();
         });
 
         Schema::rename('igniter_onlinetracker_tracker', 'customers_online');
