@@ -21,7 +21,11 @@ class CreateOnlineTrackerTable extends Migration
         Schema::table('igniter_onlinetracker_tracker', function (Blueprint $table) {
             $table->dropColumn('session_id');
             $table->dropColumn('geoip_id');
+            $table->dropColumn('platform');
             $table->dropColumn('headers');
+            $table->dropColumn('query');
+            $table->dropTimestamps();
+            $table->dateTime('date_added');
         });
 
         Schema::rename('igniter_onlinetracker_tracker', 'customers_online');

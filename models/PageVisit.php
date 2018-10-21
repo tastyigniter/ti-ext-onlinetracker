@@ -88,6 +88,9 @@ class PageVisit extends Model
 
     protected function getPlatformAttribute()
     {
+        if (!$this->agentClass)
+            return null;
+
         $platform = $this->agentClass->platform();
 
         if ($this->agentClass->isRobot()) {

@@ -1,13 +1,6 @@
 {
   "name": "igniter/onlinetracker",
   "type": "igniter-extension",
-  "description": "Track storefront page views and visits",
-  "authors": [
-    {
-      "name": "Samuel Adepoyigi",
-      "email": "sam@sampoyigi.com"
-    }
-  ],
   "require": {
     "php": ">=7.0.0",
     "geoip2/geoip2": "~2.0",

@@ -25,7 +25,7 @@ class Extension extends BaseExtension
         $this->app->register(AgentServiceProvider::class);
 
         $this->app->singleton('tracker.reader', function ($app) {
-            return new Reader((new Settings)->getDatabasePath());
+            return new Reader((new Settings)->ensureDatabaseExists()->getDatabasePath());
         });
 
         $this->app->singleton('tracker.repository.manager', function ($app) {

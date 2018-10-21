@@ -3,6 +3,7 @@
 namespace Igniter\OnlineTracker\Models;
 
 use Exception;
+use File;
 use Main\Classes\ThemeManager;
 use Model;
 use Route;
@@ -73,5 +74,14 @@ class Settings extends Model
     public function getDatabasePath()
     {
         return $this->get('database_path', storage_path('app/geoip.mmdb'));
+    }
+
+    public function ensureDatabaseExists()
+    {
+        $path = $this->getDatabasePath();
+        if (!File::exists($path))
+            $this->updateMaxMindDatabase();
+
+        return $this;
     }
 }
