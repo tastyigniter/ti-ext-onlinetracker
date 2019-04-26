@@ -2,14 +2,13 @@
 
 namespace Igniter\OnlineTracker\Classes;
 
-use GeoIp2\Database\Reader;
-use GeoIp2\Exception\AddressNotFoundException;
+use Igniter\OnlineTracker\Geoip\AbstractReader;
+use Igniter\OnlineTracker\Geoip\ReaderManager;
 use Igniter\OnlineTracker\Models\Settings;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Jenssegers\Agent\Agent;
-use MaxMind\Db\Reader\InvalidDatabaseException;
 use Str;
 
 class Tracker
@@ -37,7 +36,7 @@ class Tracker
         Session $session,
         Router $route,
         Agent $agent,
-        Reader $reader
+        ReaderManager $reader
     )
     {
         $this->config = $config;
@@ -46,10 +45,12 @@ class Tracker
         $this->session = $session;
         $this->route = $route;
         $this->agent = $agent;
-        $this->reader = $reader;
+        $this->readerManager = $reader;
 
         $agent->setUserAgent($userAgent = $request->userAgent());
         $agent->setHttpHeaders($headers = $request->header());
+
+        $reader->setDefaultDriver($config->get('reader_driver', 'geoip2'));
     }
 
     public function boot()
@@ -70,7 +71,7 @@ class Tracker
 
     protected function isTrackable()
     {
-        return $this->config->get('status')
+        return $this->config->get('status', TRUE)
             AND $this->isTrackableIp()
             AND $this->robotIsTrackable()
             AND $this->routeIsTrackable()
@@ -148,26 +149,39 @@ class Tracker
     }
 
     //
-    // IP Range
+    // GeoIP
     //
 
     protected function getGeoIpId()
     {
-        try {
-            $record = $this->reader->city($this->request->getClientIp());
+        $reader = $this->readerManager->retrieve($this->request->getClientIp());
 
-            $geoIpId = $this->repositoryManager->createGeoIp(
-                $this->getGeoIpData($record),
-                ['latitude', 'longitude']
-            );
+        if (!$reader->getRecord())
+            return null;
 
-            return $geoIpId;
-        }
-        catch (AddressNotFoundException $e) {
-        }
-        catch (InvalidDatabaseException $e) {
-        }
+        $geoIpId = $this->repositoryManager->createGeoIp(
+            $this->getGeoIpData($reader),
+            ['latitude', 'longitude']
+        );
+
+        return $geoIpId;
     }
+
+    protected function getGeoIpData(AbstractReader $reader)
+    {
+        return [
+            'latitude' => $reader->latitude(),
+            'longitude' => $reader->longitude(),
+            'region' => $reader->region(),
+            'city' => $reader->city(),
+            'postal_code' => $reader->postalCode(),
+            'country_iso_code_2' => $reader->countryISOCode(),
+        ];
+    }
+
+    //
+    // IP Range
+    //
 
     protected function ipNotInRanges($ip, $excludeRange)
     {
@@ -220,11 +234,13 @@ class Tracker
         return null;
     }
 
+    //
+    // Helpers
+    //
+
     protected function explodeString($string)
     {
-        return array_map(function ($str) {
-            return trim($str);
-        }, explode(',', str_replace("\n", ',', $string)));
+        return array_map('trim', explode(',', str_replace("\n", ',', $string)));
     }
 
     protected function matchesPattern($what, $patterns)
@@ -235,17 +251,5 @@ class Tracker
         }
 
         return FALSE;
-    }
-
-    protected function getGeoIpData($record)
-    {
-        return [
-            'latitude' => $record->location->latitude,
-            'longitude' => $record->location->longitude,
-            'region' => $record->mostSpecificSubdivision->isoCode,
-            'city' => $record->city->name,
-            'postal_code' => $record->postal->code,
-            'country_iso_code_2' => $record->country->isoCode,
-        ];
     }
 }

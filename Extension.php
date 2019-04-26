@@ -1,8 +1,8 @@
 <?php namespace Igniter\OnlineTracker;
 
-use GeoIp2\Database\Reader;
 use Igniter\OnlineTracker\Classes\RepositoryManager;
 use Igniter\OnlineTracker\Classes\Tracker;
+use Igniter\OnlineTracker\Geoip\ReaderManager;
 use Igniter\OnlineTracker\Middleware\LogOnlineUser;
 use Igniter\OnlineTracker\Models\GeoIp;
 use Igniter\OnlineTracker\Models\PageVisit;
@@ -25,7 +25,7 @@ class Extension extends BaseExtension
         $this->app->register(AgentServiceProvider::class);
 
         $this->app->singleton('tracker.reader', function ($app) {
-            return new Reader((new Settings)->ensureDatabaseExists()->getDatabasePath());
+            return new ReaderManager($app);
         });
 
         $this->app->singleton('tracker.repository.manager', function ($app) {
