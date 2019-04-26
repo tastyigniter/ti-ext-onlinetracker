@@ -88,4 +88,14 @@ class Extension extends BaseExtension
             ],
         ];
     }
+
+    public function registerDashboardWidgets()
+    {
+        return [
+            \Igniter\OnlineTracker\DashboardWidgets\PageViews::class => [
+                'label' => 'Page Views chart widget',
+                'context' => 'dashboard',
+            ],
+        ];
+    }
 }
