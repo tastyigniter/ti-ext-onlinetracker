@@ -15,7 +15,6 @@ return [
                     'data-request' => 'onSave',
                     'data-request-data' => 'close:1',
                 ],
-                'back' => ['label' => 'lang:admin::lang.button_icon_back', 'class' => 'btn btn-default', 'href' => 'igniter/onlinetracker/pagevisits'],
             ],
         ],
         'fields' => [
@@ -45,15 +44,15 @@ return [
                 'label' => 'lang:igniter.onlinetracker::default.label_exclude_ips',
                 'type' => 'textarea',
             ],
-            'customer_online_time_out' => [
-                'label' => 'lang:igniter.onlinetracker::default.label_customer_online_time_out',
+            'online_time_out' => [
+                'label' => 'lang:igniter.onlinetracker::default.label_online_time_out',
                 'type' => 'number',
                 'span' => 'left',
                 'default' => 5,
                 'comment' => 'lang:igniter.onlinetracker::default.help_customer_online',
             ],
-            'customer_online_archive_time_out' => [
-                'label' => 'lang:igniter.onlinetracker::default.label_customer_online_archive_time_out',
+            'archive_time_out' => [
+                'label' => 'lang:igniter.onlinetracker::default.label_archive_time_out',
                 'type' => 'select',
                 'span' => 'right',
                 'options' => [
@@ -67,8 +66,8 @@ return [
             ],
         ],
         'rules' => [
-            ['customer_online_time_out', 'lang:igniter.onlinetracker::default.label_customer_online_time_out', 'required|integer'],
-            ['customer_online_archive_time_out', 'lang:igniter.onlinetracker::default.label_customer_online_archive_time_out', 'required|integer'],
+            ['online_time_out', 'lang:igniter.onlinetracker::default.label_online_time_out', 'required|integer'],
+            ['archive_time_out', 'lang:igniter.onlinetracker::default.label_archive_time_out', 'required|integer'],
         ],
 
     ],

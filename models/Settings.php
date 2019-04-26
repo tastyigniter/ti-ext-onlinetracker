@@ -78,8 +78,7 @@ class Settings extends Model
 
     public function ensureDatabaseExists()
     {
-        $path = $this->getDatabasePath();
-        if (!File::exists($path))
+        if (!File::exists($this->getDatabasePath()))
             $this->updateMaxMindDatabase();
 
         return $this;

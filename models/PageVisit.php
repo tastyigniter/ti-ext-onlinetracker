@@ -121,7 +121,7 @@ class PageVisit extends Model
     public function scopeIsOnline($query, $value)
     {
         if ($value) {
-            $onlineTimeOut = setting('customer_online_time_out', 10);
+            $onlineTimeOut = Settings::get('online_time_out', 5);
             $query->where('created_at', '>=', Carbon::now()->subMinutes($onlineTimeOut));
         }
 
@@ -159,9 +159,7 @@ class PageVisit extends Model
      */
     public function getLastOnline($ip)
     {
-//        if ($this->input->valid_ip($ip)) {
         return $this->selectRaw('*, MAX(created_at) as created_at')->where('ip_address', $ip)->first();
-//        }
     }
 
     /**

@@ -46,6 +46,9 @@ class Extension extends BaseExtension
                 $app['tracker.reader']
             );
         });
+
+        if (!$this->app->runningInAdmin())
+            $this->app['Illuminate\Contracts\Http\Kernel']->pushMiddleware(LogOnlineUser::class);
     }
 
     /**
