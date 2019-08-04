@@ -14,9 +14,9 @@ class PageVisits extends \Admin\Classes\AdminController
             'model' => 'Igniter\OnlineTracker\Models\PageVisit',
             'title' => 'lang:igniter.onlinetracker::default.text_title',
             'emptyMessage' => 'lang:igniter.onlinetracker::default.text_empty',
-            'defaultSort' => ['updated_at', 'DESC'],
+            'defaultSort' => ['last_activity', 'DESC'],
             'showCheckboxes' => FALSE,
-            'configFile' => 'pagevisit'
+            'configFile' => 'pagevisit',
         ],
     ];
 

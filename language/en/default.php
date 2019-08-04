@@ -5,7 +5,7 @@ return [
 
     'text_online' => 'Online',
     'text_all' => 'All',
-    'text_filter_search' => 'Search ip, customer or browser.',
+    'text_filter_search' => 'Search by ip, customer or browser.',
     'text_filter_access' => 'View all access',
     'text_filter_date' => 'View all dates',
     'text_filter_online' => 'View recently online',

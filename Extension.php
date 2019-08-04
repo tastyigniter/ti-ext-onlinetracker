@@ -69,9 +69,9 @@ class Extension extends BaseExtension
     public function registerNavigation()
     {
         return [
-            'customers_online' => [
+            'pagevisits' => [
                 'priority' => 50,
-                'class' => 'customersonline',
+                'class' => 'pagevisits',
                 'icon' => 'fa-globe',
                 'href' => admin_url('igniter/onlinetracker/pagevisits'),
                 'title' => lang('igniter.onlinetracker::default.text_title'),

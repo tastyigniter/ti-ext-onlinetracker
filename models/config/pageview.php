@@ -3,10 +3,6 @@
 return [
     'list' => [
         'filter' => [
-            'search' => [
-                'prompt' => 'lang:igniter.onlinetracker::default.text_filter_search',
-                'mode' => 'all' // or any, exact
-            ],
             'scopes' => [
                 'date' => [
                     'label' => 'lang:igniter.onlinetracker::default.text_filter_date',
@@ -29,7 +25,7 @@ return [
                     'class' => 'btn btn-default',
                     'href' => 'extensions/edit/igniter/onlinetracker/settings',
                 ],
-                'filter' => ['label' => 'lang:admin::lang.button_icon_filter', 'class' => 'btn btn-default btn-filter', 'data-toggle' => 'list-filter', 'data-target' => '.panel-filter .panel-body'],
+                'filter' => ['label' => 'lang:admin::lang.button_icon_filter', 'class' => 'btn btn-default btn-filter', 'data-toggle' => 'list-filter', 'data-target' => '.list-filter'],
             ],
         ],
         'columns' => [

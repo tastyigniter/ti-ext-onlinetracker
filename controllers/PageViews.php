@@ -13,9 +13,9 @@ class PageViews extends \Admin\Classes\AdminController
             'model' => 'Igniter\OnlineTracker\Models\PageView',
             'title' => 'lang:igniter.onlinetracker::default.views.text_title',
             'emptyMessage' => 'lang:igniter.onlinetracker::default.views.text_empty',
-            'defaultSort' => ['updated_at', 'DESC'],
+            'defaultSort' => ['page_views', 'DESC'],
             'showCheckboxes' => FALSE,
-            'configFile' => 'pageview'
+            'configFile' => 'pageview',
         ],
     ];
 

@@ -44,7 +44,7 @@ return [
                     'class' => 'btn btn-default',
                     'href' => 'extensions/edit/igniter/onlinetracker/settings',
                 ],
-                'filter' => ['label' => 'lang:admin::lang.button_icon_filter', 'class' => 'btn btn-default btn-filter', 'data-toggle' => 'list-filter', 'data-target' => '.panel-filter .panel-body'],
+                'filter' => ['label' => 'lang:admin::lang.button_icon_filter', 'class' => 'btn btn-default btn-filter', 'data-toggle' => 'list-filter', 'data-target' => '.list-filter'],
                 'update' => [
                     'label' => 'lang:igniter.onlinetracker::default.button_update',
                     'class' => 'btn btn-default pull-right',
@@ -61,7 +61,7 @@ return [
             'country_city' => [
                 'label' => 'lang:igniter.onlinetracker::default.column_name',
                 'type' => 'text',
-                'searchable' => TRUE,
+                'sortable' => FALSE,
             ],
             'page_views' => [
                 'label' => 'lang:igniter.onlinetracker::default.column_views',
