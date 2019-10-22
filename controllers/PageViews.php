@@ -1,6 +1,8 @@
 <?php namespace Igniter\OnlineTracker\Controllers;
 
 use AdminMenu;
+use Carbon\Carbon;
+use Igniter\OnlineTracker\Models\Settings;
 
 class PageViews extends \Admin\Classes\AdminController
 {
@@ -30,6 +32,9 @@ class PageViews extends \Admin\Classes\AdminController
 
     public function listExtendQuery($query)
     {
+        if (($pastMonths = Settings::get('archive_time_out', 3)) > 0)
+            $query->whereDate('created_at', '>=', Carbon::now()->subMonths($pastMonths));
+
         $query->with(['geoip', 'customer'])->groupBy('request_uri');
     }
 }

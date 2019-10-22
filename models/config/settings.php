@@ -55,6 +55,7 @@ return [
                 'label' => 'lang:igniter.onlinetracker::default.label_archive_time_out',
                 'type' => 'select',
                 'span' => 'right',
+                'default' => '3',
                 'options' => [
                     '0' => 'lang:igniter.onlinetracker::default.text_never_delete',
                     '1' => 'lang:igniter.onlinetracker::default.text_1_month',

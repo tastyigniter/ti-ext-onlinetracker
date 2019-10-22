@@ -1,7 +1,10 @@
 <?php namespace Igniter\OnlineTracker\Controllers;
 
 use AdminMenu;
+use Carbon\Carbon;
+use Igniter\OnlineTracker\Models\PageVisit;
 use Igniter\OnlineTracker\Models\Settings;
+use Illuminate\Support\Facades\Cache;
 
 class PageVisits extends \Admin\Classes\AdminController
 {
@@ -29,6 +32,13 @@ class PageVisits extends \Admin\Classes\AdminController
         AdminMenu::setContext('pagevisits');
     }
 
+    public function index()
+    {
+        $this->clearOldRecords();
+
+        $this->asExtension('ListController')->index();
+    }
+
     public function index_onUpdateGeoIp()
     {
         Settings::make()->updateMaxMindDatabase();
@@ -40,6 +50,22 @@ class PageVisits extends \Admin\Classes\AdminController
 
     public function listExtendQuery($query)
     {
+        if (($pastMonths = (int)Settings::get('archive_time_out', 3)) > 0)
+            $query->whereDate('created_at', '>=', Carbon::now()->subMonths($pastMonths));
+
         $query->with(['geoip', 'customer'])->distinct()->groupBy('ip_address');
+    }
+
+    protected function clearOldRecords()
+    {
+        $minutes = Carbon::now()->addHours(24);
+        $deleted = Cache::remember('igniter_onlinetracker_pagevisits', $minutes, function () {
+            if (($pastMonths = (int)Settings::get('archive_time_out', 3)) > 0)
+                PageVisit::whereDate('created_at', '<=', Carbon::now()->subMonths($pastMonths))->delete();
+
+            return TRUE;
+        });
+
+        return $deleted;
     }
 }

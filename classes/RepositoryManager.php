@@ -7,7 +7,14 @@ use Igniter\OnlineTracker\Models\PageVisit as TrackerModel;
 
 class RepositoryManager
 {
+    /**
+     * @var \Igniter\OnlineTracker\Models\PageVisit
+     */
     protected $trackerModel;
+
+    /**
+     * @var \Igniter\OnlineTracker\Models\GeoIp
+     */
     protected $geoIpModel;
 
     public function __construct(TrackerModel $trackerModel, GeoIp $geoIpModel)
