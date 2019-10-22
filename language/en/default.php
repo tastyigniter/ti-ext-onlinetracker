@@ -38,7 +38,6 @@ return [
     'label_online_time_out' => 'Online Timeout',
     'label_archive_time_out' => 'History Archive Timeout',
 
-    'column_name' => 'Country',
     'column_id' => 'ID',
     'column_ip' => 'IP',
     'column_customer' => 'Customer',

@@ -59,7 +59,7 @@ return [
                 'searchable' => TRUE,
             ],
             'country_city' => [
-                'label' => 'lang:igniter.onlinetracker::default.column_name',
+                'label' => 'lang:admin::lang.label_name',
                 'type' => 'text',
                 'sortable' => FALSE,
             ],
