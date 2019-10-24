@@ -2,7 +2,7 @@
   "code": "igniter.onlinetracker",
   "name": "Online Tracker",
   "description": "Enables page views & visits tracking",
-  "version": "v1.0.1",
+  "version": "v1.0.2",
   "author": "SamPoyigi",
   "icon": "fa-eye",
   "homepage": "https://github.com/tastyigniter/ti-ext-onlinetracker"

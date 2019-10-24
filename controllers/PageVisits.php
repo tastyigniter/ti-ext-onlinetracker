@@ -58,8 +58,8 @@ class PageVisits extends \Admin\Classes\AdminController
 
     protected function clearOldRecords()
     {
-        $minutes = Carbon::now()->addHours(24);
-        $deleted = Cache::remember('igniter_onlinetracker_pagevisits', $minutes, function () {
+        $seconds = Carbon::now()->addHours(24);
+        $deleted = Cache::remember('igniter_onlinetracker_pagevisits', $seconds, function () {
             if (($pastMonths = (int)Settings::get('archive_time_out', 3)) > 0)
                 PageVisit::whereDate('created_at', '<=', Carbon::now()->subMonths($pastMonths))->delete();
 
