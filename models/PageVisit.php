@@ -46,7 +46,7 @@ class PageVisit extends Model
      */
     protected $agentClass;
 
-    public function afterFetch()
+    protected function afterFetch()
     {
         $this->applyAgentClass();
     }

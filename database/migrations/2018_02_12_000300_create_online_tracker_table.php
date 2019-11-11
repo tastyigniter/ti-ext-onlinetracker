@@ -18,6 +18,9 @@ class CreateOnlineTrackerTable extends Migration
 
     public function down()
     {
+        if (!Schema::hasTable('igniter_onlinetracker_tracker'))
+            return;
+
         Schema::table('igniter_onlinetracker_tracker', function (Blueprint $table) {
             $table->dropColumn('session_id');
             $table->dropColumn('geoip_id');
