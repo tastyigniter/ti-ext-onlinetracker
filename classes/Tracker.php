@@ -89,10 +89,10 @@ class Tracker
 
     protected function robotIsTrackable()
     {
-        $trackRobots = $this->config->get('track_robots', FALSE);
+        $trackRobots = (bool)$this->config->get('track_robots', FALSE);
 
-        return !$this->agent->isRobot()
-            OR !$trackRobots;
+        return $this->agent->isRobot()
+            AND $trackRobots;
     }
 
     protected function routeIsTrackable()

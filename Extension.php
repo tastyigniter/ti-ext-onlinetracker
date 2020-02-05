@@ -37,7 +37,7 @@ class Extension extends BaseExtension
 
         $this->app->singleton('tracker', function ($app) {
             return new Tracker(
-                new Settings,
+                Settings::instance(),
                 $app['tracker.repository.manager'],
                 $app['request'],
                 $app['session.store'],
@@ -59,8 +59,8 @@ class Extension extends BaseExtension
     public function registerPermissions()
     {
         return [
-            'igniter.onlinetracker.PageVisits' => [
-                'description' => 'Manage online tracker settings',
+            'Igniter.OnlineTracker.ManageSettings' => [
+                'description' => 'Manage online tracker extension settings',
                 'group' => 'module',
             ],
         ];
@@ -75,7 +75,7 @@ class Extension extends BaseExtension
                 'icon' => 'fa-globe',
                 'href' => admin_url('igniter/onlinetracker/pagevisits'),
                 'title' => lang('igniter.onlinetracker::default.text_title'),
-                'permission' => 'igniter.onlinetracker.PageVisits',
+                'permission' => 'Igniter.OnlineTracker.*',
             ],
         ];
     }
@@ -87,7 +87,7 @@ class Extension extends BaseExtension
                 'label' => 'Page Tracker Settings',
                 'description' => 'Manage online tracker settings.',
                 'model' => 'Igniter\OnlineTracker\Models\Settings',
-                'permissions' => ['igniter.onlinetracker'],
+                'permissions' => ['Igniter.OnlineTracker.*'],
             ],
         ];
     }

@@ -23,7 +23,7 @@ class PageVisits extends \Admin\Classes\AdminController
         ],
     ];
 
-    protected $requiredPermissions = 'igniter.onlinetracker.PageVisits';
+    protected $requiredPermissions = 'Igniter.OnlineTracker.*';
 
     public function __construct()
     {

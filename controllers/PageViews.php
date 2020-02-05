@@ -21,7 +21,7 @@ class PageViews extends \Admin\Classes\AdminController
         ],
     ];
 
-    protected $requiredPermissions = 'igniter.onlinetracker.Views';
+    protected $requiredPermissions = 'Igniter.OnlineTracker.*';
 
     public function __construct()
     {
