@@ -15,7 +15,7 @@ class Ipstack extends AbstractReader
      */
     protected function getEndpoint($ip)
     {
-        $accessKey = Settings::get('ipstack_access_key');
+        $accessKey = Settings::get('geoip_reader_ipstack_access_key');
 
         if (!strlen($accessKey))
             throw new Exception('Missing ipstack access key');

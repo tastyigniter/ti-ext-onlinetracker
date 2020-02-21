@@ -65,6 +65,46 @@ return [
                 ],
                 'comment' => 'lang:igniter.onlinetracker::default.help_customer_online_archive',
             ],
+            'geoip_reader' => [
+                'label' => 'lang:igniter.onlinetracker::default.label_geoip_reader',
+                'type' => 'select',
+                'default' => 'maxmind',
+                'options' => [
+                    'geoip2' => 'lang:igniter.onlinetracker::default.text_maxmind',
+                    'ipstack' => 'lang:igniter.onlinetracker::default.text_ipstack',
+                ],
+            ],
+            'geoip_reader_ipstack_access_key' => [
+                'label' => 'lang:igniter.onlinetracker::default.label_geoip_reader_ipstack_access_key',
+                'type' => 'text',
+                'comment' => 'lang:igniter.onlinetracker::default.help_geoip_reader_ipstack',
+                'trigger' => [
+                    'action' => 'show',
+                    'field' => 'geoip_reader',
+                    'condition' => 'value[ipstack]',
+                ],
+            ],
+            'geoip_reader_maxmind_account_id' => [
+                'label' => 'lang:igniter.onlinetracker::default.label_geoip_reader_maxmind_account_id',
+                'type' => 'text',
+                'span' => 'left',
+                'comment' => 'lang:igniter.onlinetracker::default.help_geoip_reader_maxmind',
+                'trigger' => [
+                    'action' => 'show',
+                    'field' => 'geoip_reader',
+                    'condition' => 'value[geoip2]',
+                ],
+            ],
+            'geoip_reader_maxmind_license_key' => [
+                'label' => 'lang:igniter.onlinetracker::default.label_geoip_reader_maxmind_license_key',
+                'type' => 'text',
+                'span' => 'right',
+                'trigger' => [
+                    'action' => 'show',
+                    'field' => 'geoip_reader',
+                    'condition' => 'value[geoip2]',
+                ],
+            ],
         ],
         'rules' => [
             ['online_time_out', 'lang:igniter.onlinetracker::default.label_online_time_out', 'required|integer'],

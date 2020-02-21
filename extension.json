@@ -2,7 +2,7 @@
   "code": "igniter.onlinetracker",
   "name": "Online Tracker",
   "description": "Enables page views & visits tracking",
-  "version": "v1.0.4",
+  "version": "v1.1.0",
   "author": "SamPoyigi",
   "icon": {
     "class": "fas fa-eye",

@@ -45,11 +45,6 @@ return [
                     'href' => 'extensions/edit/igniter/onlinetracker/settings',
                 ],
                 'filter' => ['label' => 'lang:admin::lang.button_icon_filter', 'class' => 'btn btn-default btn-filter', 'data-toggle' => 'list-filter', 'data-target' => '.list-filter'],
-                'update' => [
-                    'label' => 'lang:igniter.onlinetracker::default.button_update',
-                    'class' => 'btn btn-default pull-right',
-                    'data-request' => 'onUpdateGeoIp',
-                ],
             ],
         ],
         'columns' => [

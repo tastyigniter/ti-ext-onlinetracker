@@ -2,10 +2,10 @@
 
 namespace Igniter\OnlineTracker\Geoip;
 
-use GeoIp2\Database\Reader;
-use GeoIp2\Exception\AddressNotFoundException;
+use Exception;
+use GeoIp2\WebService\Client;
 use Igniter\OnlineTracker\Models\Settings;
-use MaxMind\Db\Reader\InvalidDatabaseException;
+use Illuminate\Support\Facades\Log;
 
 class GeoIp2 extends AbstractReader
 {
@@ -17,13 +17,15 @@ class GeoIp2 extends AbstractReader
      */
     public function retrieve($ip)
     {
+        $accountId = Settings::get('geoip_reader_maxmind_account_id');
+        $licenseKey = Settings::get('geoip_reader_maxmind_license_key');
+
         try {
-            $reader = new Reader((new Settings)->ensureDatabaseExists()->getDatabasePath());
-            $this->record = $reader->city($ip);
+            $client = new Client($accountId, $licenseKey);
+            $this->record = $client->city($ip);
         }
-        catch (AddressNotFoundException $e) {
-        }
-        catch (InvalidDatabaseException $e) {
+        catch (Exception $ex) {
+            Log::error($ex->getMessage());
         }
 
         return $this;

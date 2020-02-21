@@ -50,7 +50,7 @@ class Tracker
         $agent->setUserAgent($userAgent = $request->userAgent());
         $agent->setHttpHeaders($headers = $request->header());
 
-        $reader->setDefaultDriver($config->get('reader_driver', 'geoip2'));
+        $reader->setDefaultDriver($config->get('geoip_reader', 'geoip2'));
     }
 
     public function boot()
@@ -66,12 +66,19 @@ class Tracker
 
     public function track()
     {
+        $this->repositoryManager->clearLog();
+
         $this->repositoryManager->createLog($this->getLogData());
+    }
+
+    public function clearOldLog()
+    {
+        $this->repositoryManager->clearLog();
     }
 
     protected function isTrackable()
     {
-        return $this->config->get('status', TRUE)
+        return ((bool)$this->config->get('status', TRUE))
             AND $this->isTrackableIp()
             AND $this->robotIsTrackable()
             AND $this->routeIsTrackable()
@@ -91,8 +98,10 @@ class Tracker
     {
         $trackRobots = (bool)$this->config->get('track_robots', FALSE);
 
-        return $this->agent->isRobot()
-            AND $trackRobots;
+        if (!$this->agent->isRobot())
+            return TRUE;
+
+        return $this->agent->isRobot() AND $trackRobots;
     }
 
     protected function routeIsTrackable()
@@ -206,7 +215,7 @@ class Tracker
         //   192.168.1.1-192.168.1.100
         //   0.0.0.0-255.255.255.255
         if ($parsedRange = $this->ipRangeIsDashed($range)) {
-            list($ip1, $ip2) = $parsedRange;
+            [$ip1, $ip2] = $parsedRange;
 
             return ip2long($ip) >= $ip1 AND ip2long($ip) <= $ip2;
         }

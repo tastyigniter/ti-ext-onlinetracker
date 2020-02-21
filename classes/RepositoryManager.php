@@ -2,8 +2,11 @@
 
 namespace Igniter\OnlineTracker\Classes;
 
+use Carbon\Carbon;
 use Igniter\OnlineTracker\Models\GeoIp;
 use Igniter\OnlineTracker\Models\PageVisit as TrackerModel;
+use Igniter\OnlineTracker\Models\Settings;
+use Illuminate\Support\Facades\Cache;
 
 class RepositoryManager
 {
@@ -53,5 +56,17 @@ class RepositoryManager
             return null;
 
         return $foundModel;
+    }
+
+    public function clearLog()
+    {
+        $minutes = Carbon::now()->addHours(12);
+
+        return Cache::remember('igniter_onlinetracker_pagevisits', $minutes, function () {
+            if (($pastMonths = (int)Settings::get('archive_time_out', 3)) > 0)
+                TrackerModel::whereDate('created_at', '<=', Carbon::now()->subMonths($pastMonths))->delete();
+
+            return TRUE;
+        });
     }
 }

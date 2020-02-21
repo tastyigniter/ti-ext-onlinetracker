@@ -23,6 +23,8 @@ return [
     'text_3_months' => '3 months',
     'text_6_months' => '6 months',
     'text_12_months' => '12 months',
+    'text_maxmind' => 'Maxmind GeoLite2',
+    'text_ipstack' => 'Ipstack',
 
     'button_settings' => 'Settings',
     'button_update' => 'Update GeoIp Database',
@@ -37,6 +39,10 @@ return [
     'label_exclude_ips' => 'Exclude Ip Addresses (separated by commas)',
     'label_online_time_out' => 'Online Timeout',
     'label_archive_time_out' => 'History Archive Timeout',
+    'label_geoip_reader' => 'GeoIP Reader',
+    'label_geoip_reader_ipstack_access_key' => 'IP Stack Access Key',
+    'label_geoip_reader_maxmind_account_id' => 'Maxmind Account ID',
+    'label_geoip_reader_maxmind_license_key' => 'Maxmind License Key',
 
     'column_id' => 'ID',
     'column_ip' => 'IP',
@@ -52,6 +58,8 @@ return [
 
     'help_customer_online' => 'The number of minutes a customer will appear online.',
     'help_customer_online_archive' => 'Delete all customer online report older than',
+    'help_geoip_reader_ipstack' => 'You can <a target="_blank" href="https://ipstack.com/signup/free">sign up here</a> for your iptstack account.',
+    'help_geoip_reader_maxmind' => 'You can <a target="_blank" href="https://www.maxmind.com/en/geolite2/signup/">sign up here</a> for your MaxMind account.',
 
     'views' => [
         'text_title' => 'Page Views',
