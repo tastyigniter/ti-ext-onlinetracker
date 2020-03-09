@@ -44,7 +44,7 @@ class PageViews extends BaseDashboardWidget
      */
     public function render()
     {
-        return $this->makePartial('~/extensions/igniter/onlinetracker/dashboardwidgets/pageviews/pageviews');
+        return $this->makePartial('$/igniter/onlinetracker/dashboardwidgets/pageviews/pageviews');
     }
 
     protected function getDatasets($start, $end)
