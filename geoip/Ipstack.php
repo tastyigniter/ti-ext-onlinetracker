@@ -13,6 +13,23 @@ class Ipstack extends AbstractReader
      * @param string $ip IP address to fetch geoip record for
      * @return string
      */
+    public function retrieve($ip)
+    {
+        $response = $this->http->get($this->getEndpoint($ip));
+        if ($response->getStatusCode() == 200) {
+            $record = json_decode($response->getBody()->getContents());
+            $this->record = $record->success ? $record : null;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Returns an endpoint to fetch the record from
+     *
+     * @param string $ip IP address to fetch geoip record for
+     * @return string
+     */
     protected function getEndpoint($ip)
     {
         $accessKey = Settings::get('geoip_reader_ipstack_access_key');
