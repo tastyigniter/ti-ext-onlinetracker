@@ -16,7 +16,7 @@ abstract class AbstractReader
     /**
      * Holds recorrd fetched from a remote geoapi service
      *
-     * @var Object
+     * @var object
      */
     protected $record;
 

@@ -1,4 +1,6 @@
-<?php namespace Igniter\OnlineTracker\Database\Migrations;
+<?php
+
+namespace Igniter\OnlineTracker\Database\Migrations;
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

@@ -1,4 +1,6 @@
-<?php namespace Igniter\OnlineTracker\Controllers;
+<?php
+
+namespace Igniter\OnlineTracker\Controllers;
 
 use AdminMenu;
 

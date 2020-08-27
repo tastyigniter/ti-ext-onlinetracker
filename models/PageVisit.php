@@ -1,4 +1,6 @@
-<?php namespace Igniter\OnlineTracker\Models;
+<?php
+
+namespace Igniter\OnlineTracker\Models;
 
 use Carbon\Carbon;
 use Country;
@@ -7,8 +9,6 @@ use Model;
 
 /**
  * PageVisit Model Class
- *
- * @package Admin
  */
 class PageVisit extends Model
 {

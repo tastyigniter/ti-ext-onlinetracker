@@ -7,7 +7,6 @@ use Illuminate\Support\Manager;
 
 class ReaderManager extends Manager
 {
-
     /**
      * The default reader used to collect GeoIP data.
      *
