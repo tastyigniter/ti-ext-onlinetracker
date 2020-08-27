@@ -1,4 +1,6 @@
-<?php namespace Igniter\OnlineTracker\DashboardWidgets;
+<?php
+
+namespace Igniter\OnlineTracker\DashboardWidgets;
 
 use Admin\Classes\BaseDashboardWidget;
 use Admin\Traits\HasChartDatasets;

@@ -5,7 +5,7 @@ return [
         'filter' => [
             'search' => [
                 'prompt' => 'lang:igniter.onlinetracker::default.text_filter_search',
-                'mode' => 'all' // or any, exact
+                'mode' => 'all', // or any, exact
             ],
             'scopes' => [
                 'access' => [

@@ -1,4 +1,6 @@
-<?php namespace Igniter\OnlineTracker;
+<?php
+
+namespace Igniter\OnlineTracker;
 
 use Igniter\OnlineTracker\Classes\RepositoryManager;
 use Igniter\OnlineTracker\Classes\Tracker;

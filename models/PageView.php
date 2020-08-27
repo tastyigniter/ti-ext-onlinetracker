@@ -1,15 +1,11 @@
-<?php namespace Igniter\OnlineTracker\Models;
+<?php
 
-use GeoIp2\Database\Reader;
-use GeoIp2\Exception\AddressNotFoundException;
-use Jenssegers\Agent\Agent;
-use MaxMind\Db\Reader\InvalidDatabaseException;
+namespace Igniter\OnlineTracker\Models;
+
 use Model;
 
 /**
  * PageVisit Model Class
- *
- * @package Admin
  */
 class PageView extends Model
 {
