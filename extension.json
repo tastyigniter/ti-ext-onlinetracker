@@ -1,8 +1,8 @@
 {
   "code": "igniter.onlinetracker",
-  "name": "Online Tracker (no longer supported, see Automation extension)",
+  "name": "Online Tracker (no longer supported, see Visitor Tracker extension)",
   "description": "Enables page views & visits tracking",
-  "version": "v1.1.2",
+  "version": "v1.1.3",
   "author": "SamPoyigi",
   "icon": {
     "class": "fas fa-eye",
