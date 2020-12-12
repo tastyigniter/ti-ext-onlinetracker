@@ -1,4 +1,4 @@
-This extension has been renamed to [Visitor Tracker](https://github.com/igniter-labs/ti-ext-visitortracker) extension and is no longer supported.
+# This extension has been renamed to [Visitor Tracker](https://github.com/igniter-labs/ti-ext-visitortracker) extension and is no longer supported.
 
 This extension enables page views & visits tracking on your TastyIgniter website.
 
